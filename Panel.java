@@ -66,7 +66,7 @@ public class Panel extends JPanel {
 
         add(taskPanel, BorderLayout.CENTER);
 
-
+        
 
 
     }

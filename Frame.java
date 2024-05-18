@@ -11,6 +11,7 @@ public class Frame extends JFrame {
         
         pack();
         setVisible(true);
+        setLocationRelativeTo(null);
         // setLocationRelativeTo(null);
     }
 }
