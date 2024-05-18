@@ -5,49 +5,66 @@ public class Panel extends JPanel {
     public Panel() {
         setLayout(new BorderLayout());
 
-        JPanel topPanel = new JPanel();
-        topPanel.setLayout(new GridLayout(2, 1));
+        // Top panel with GridBagLayout to respect preferred sizes
+        JPanel topPanel = new JPanel(new GridBagLayout());
+        topPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 10));
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(0, 0, 5, 0); // Add padding between components
 
         JLabel dayLabel = new JLabel("Date today");
         dayLabel.setPreferredSize(new Dimension(300, 50));
         dayLabel.setHorizontalAlignment(SwingConstants.CENTER);
         dayLabel.setBorder(BorderFactory.createLineBorder(Color.black));
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        topPanel.add(dayLabel, gbc);
 
         JLabel calendarLabel = new JLabel("Calendar");
         calendarLabel.setPreferredSize(new Dimension(300, 50));
         calendarLabel.setHorizontalAlignment(SwingConstants.CENTER);
         calendarLabel.setBorder(BorderFactory.createLineBorder(Color.black));
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        topPanel.add(calendarLabel, gbc);
 
-        JPanel taskPanel = new JPanel();
-                                        //Depends on how many task are there!
-        taskPanel.setLayout(new GridLayout(2, 1));
+        add(topPanel, BorderLayout.NORTH);
 
-        //change to for loop later!
-        JPanel activityPanel = new JPanel();
-        activityPanel.setLayout(new GridLayout(2, 1));
+        // Task panel with GridBagLayout to respect preferred sizes
+        JPanel taskPanel = new JPanel(new GridBagLayout());
+        taskPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+        GridBagConstraints gbcTask = new GridBagConstraints();
+        gbcTask.fill = GridBagConstraints.HORIZONTAL;
+        gbcTask.insets = new Insets(5, 5, 5, 5); // Add padding between components
+
+        // Activity panel with GridBagLayout to respect preferred sizes
+        JPanel activityPanel = new JPanel(new GridBagLayout());
         activityPanel.setBorder(BorderFactory.createLineBorder(Color.red));
+        GridBagConstraints gbcActivity = new GridBagConstraints();
+        gbcActivity.fill = GridBagConstraints.HORIZONTAL;
+        gbcActivity.insets = new Insets(5, 5, 5, 5); // Add padding between components
 
-        //background image should be here!
-        //JLabel for now for practices
         JLabel background = new JLabel("DO Anytime");
         background.setPreferredSize(new Dimension(300, 100));
         background.setHorizontalAlignment(SwingConstants.CENTER);
         background.setBorder(BorderFactory.createLineBorder(Color.black));
-        
-        JLabel progressBar = new JLabel("progress");
+        gbcActivity.gridx = 0;
+        gbcActivity.gridy = 0;
+        activityPanel.add(background, gbcActivity);
+
+        JLabel progressBar = new JLabel("Progress");
         progressBar.setPreferredSize(new Dimension(200, 100));
         progressBar.setHorizontalAlignment(SwingConstants.CENTER);
         progressBar.setBorder(BorderFactory.createLineBorder(Color.black));
+        gbcActivity.gridx = 0;
+        gbcActivity.gridy = 1;
+        activityPanel.add(progressBar, gbcActivity);
 
-        add(topPanel, BorderLayout.NORTH);
-        topPanel.add(dayLabel);
-        topPanel.add(calendarLabel);
+        gbcTask.gridx = 0;
+        gbcTask.gridy = 0;
+        taskPanel.add(activityPanel, gbcTask);
 
         add(taskPanel, BorderLayout.CENTER);
-        taskPanel.add(activityPanel);
-        activityPanel.add(background);
-        activityPanel.add(progressBar);
-
 
 
 
