@@ -1,0 +1,6 @@
+.calendar {
+  display: flex;
+  flex-direction: center;
+  margin: 0;
+  width: 50%;
+}
